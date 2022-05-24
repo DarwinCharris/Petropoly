@@ -1,0 +1,15 @@
+1,SALGA DE LA CÁRCEL GRATIS
+2,Váyase pa’ la cárcel por mamerto. No pase por la SALIDA;, no cobra $200,200
+3,Amiga, avance a la salida; cobre $200,200
+4,Abudinee un poquito de plata. Cobre $200,200
+5,Te dejamos morir pero te toca pagar; pague $50,50
+6,Reforma tributaria? ¡eso si, jámaasss!; reciba $100,100
+7,Fuiste elegidx para ser un falso positivo. Cobre $100,100
+8,Paga el icetex por $50,50
+9,Evadiste a la DIAN. Cobre $20,20
+10,Te ganaste el baloto. SIN PALABRAS…; reciba $25,25
+11,Te toca poner pa’ la botella $100,100
+12,Dio(s)medes te felicita por tu cumpleaños,10
+13,Recibiste coimas de Sarmiento Ángulo,100
+14,Por la venta de votos reciba $50 y una hallaca,50
+15,Si vio mor? Mero lindo,10
