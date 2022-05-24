@@ -24,7 +24,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     int cont = 0;
     int turno = 1;
-    ListaCampo tablero = new ListaCampo();
+    Tablero tablero = new Tablero();
     AudioClip sonido1, sonido2;
 
     /**

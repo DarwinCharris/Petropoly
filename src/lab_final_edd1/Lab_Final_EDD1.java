@@ -36,7 +36,7 @@ public class Lab_Final_EDD1 {
         
 
     }
-    public static void leertxt(String file_name, ListaCampo ca) {
+    public static void leertxt(String file_name, Tablero ca) {
         String nombre;
         int numCasilla;
         //propiedades

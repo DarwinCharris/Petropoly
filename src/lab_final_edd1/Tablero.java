@@ -18,12 +18,12 @@ import javax.swing.JLabel;
  *
  * @author DELL
  */
-public class ListaCampo {
+public class Tablero {
 
     protected Nodo head, tail;
     AudioClip sonido;
 
-    public ListaCampo() {
+    public Tablero() {
         Nodo head = null;
         Nodo tail = null;
     }

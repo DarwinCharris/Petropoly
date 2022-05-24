@@ -25,9 +25,6 @@ public class Nodo {
     Nodo prev;
     Nodo next;
 
-    public void tarjetaRandom() {
-        //por ahora nada
-    }
 
     public Nodo(int d, String a, String color, String D, int val, int rent, int rentM, String Ruta, int key) {
         this.numCasilla = d;
