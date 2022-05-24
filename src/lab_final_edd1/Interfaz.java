@@ -66,9 +66,9 @@ public class Interfaz extends javax.swing.JFrame {
         transparenciaButton();
         //sonido
         sonido1 = java.applet.Applet.newAudioClip(getClass().getResource("/audios/interfaz.wav"));
-        //sonido1.play();
+        sonido1.play();
         sonido2 = java.applet.Applet.newAudioClip(getClass().getResource("/audios/interfaz2.wav"));
-        //sonido2.loop();
+        sonido2.loop();
 
     }
 
@@ -483,9 +483,50 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_dadoBtnActionPerformed
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
-        Njugadores c = new Njugadores();
-        c.setVisible(true);
-        this.setVisible(false);
+        String[] opciones = {"SALIR", "NO SALIR"};
+        int op = JOptionPane.showOptionDialog(null, "¿Está seguro que quiere sali?, "+"\n"+" se perderá la partida",
+                "!!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CLOSED_OPTION, null, opciones, opciones[0]);
+        if(op == 0){
+            Variables.jugador1.posicion = 0;
+            Variables.jugador1.estado=0;
+            Variables.jugador1.dinero = 1500;
+            Variables.jugador1.x= 585;
+            Variables.jugador1.y= 603;
+            Variables.jugador1.nombre = "jugador1";
+            Variables.jugador1.contador = 0;
+            Variables.jugador1.Csuerte=0;
+            Variables.jugador1.CArca = 0;
+            Variables.jugador2.posicion = 0;
+            Variables.jugador2.estado=0;
+            Variables.jugador2.dinero = 1500;
+            Variables.jugador2.x= 585;
+            Variables.jugador2.y= 603;
+            Variables.jugador2.nombre = "jugador3";
+            Variables.jugador2.contador = 0;
+            Variables.jugador2.Csuerte=0;
+            Variables.jugador2.CArca = 0;
+            Variables.jugador3.posicion = 0;
+            Variables.jugador3.estado=0;
+            Variables.jugador3.dinero = 1500;
+            Variables.jugador3.x= 585;
+            Variables.jugador3.y= 603;
+            Variables.jugador3.nombre = "jugador3";
+            Variables.jugador3.contador = 0;
+            Variables.jugador3.Csuerte=0;
+            Variables.jugador3.CArca = 0;
+            Variables.jugador4.posicion = 0;
+            Variables.jugador4.estado=0;
+            Variables.jugador4.dinero = 1500;
+            Variables.jugador4.x= 585;
+            Variables.jugador4.y= 603;
+            Variables.jugador4.nombre = "jugador4";
+            Variables.jugador4.contador = 0;
+            Variables.jugador4.Csuerte=0;
+            Variables.jugador4.CArca = 0;
+            Njugadores c = new Njugadores();
+            c.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_homeMouseClicked
 
     private void ProRojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProRojoActionPerformed

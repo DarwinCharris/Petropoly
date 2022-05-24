@@ -428,7 +428,7 @@ public class ListaCampo {
                             do{
                                    escogido = S.cartaRandom();
                                 }while(escogido==11);
-                        }
+                        } 
                         String cartica = "/ImgSuerte/" + escogido + ".png";
                         Icon carta = new ImageIcon(getClass().getResource(cartica));
                         JOptionPane.showMessageDialog(null, "", "CARTA", JOptionPane.PLAIN_MESSAGE, carta);
@@ -439,6 +439,7 @@ public class ListaCampo {
                                     dado++;
                                 }
                                 mover(dado, ficha, n);
+                                
                                 break;
                             case 2:
 
