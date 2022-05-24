@@ -291,7 +291,7 @@ public class Interfaz extends javax.swing.JFrame {
                     dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
                     dado = dado1 + dado2;
                     dados(dado1, dado2);
-                    mover(dado, rojo, Variables.jugador1); //Moverse
+                    mover(2, rojo, Variables.jugador1); //Moverse
                     tablero.buscarn(Variables.jugador1, Variables.jugador2, Variables.jugador3, Variables.jugador4, rojo); //Buscar en el tablero/Comprar/Pagar/Cambiar tu estado
                     if (Variables.jugador1.dinero == 0) { //Si caieste a bancarrota...
                         rojo.setVisible(false); //Se desactiva tu fiha ... prox se desactiva tu label del dinero
@@ -323,7 +323,7 @@ public class Interfaz extends javax.swing.JFrame {
                     dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
                     dado = dado1 + dado2;
                     dados(dado1, dado2);
-                    mover(dado, amarilla, Variables.jugador2);
+                    mover(2, amarilla, Variables.jugador2);
                     tablero.buscarn(Variables.jugador2, Variables.jugador1, Variables.jugador3, Variables.jugador4, amarilla);
                     if (Variables.jugador2.dinero == 0) {
                         amarilla.setVisible(false);

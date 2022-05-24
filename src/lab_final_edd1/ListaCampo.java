@@ -272,6 +272,7 @@ public class ListaCampo {
                     if (P.numCasilla == 2 || P.numCasilla == 17 || P.numCasilla == 33) {// arca comunal 
                         Cofre C = new Cofre();
                         int escogido = C.cartaRandom();
+                        escogido = 2;
                         String cartica = "/ImgArcaComunal/" + escogido + ".png";
                         Icon carta = new ImageIcon(getClass().getResource(cartica));
                         JOptionPane.showMessageDialog(null, "", "CARTA", JOptionPane.PLAIN_MESSAGE, carta);
