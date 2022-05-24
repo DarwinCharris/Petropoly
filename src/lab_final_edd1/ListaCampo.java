@@ -230,16 +230,15 @@ public class ListaCampo {
                                                 System.out.println("no tienes plata compa");
                                             } else {
                                                 n.dinero = n.dinero - resultado; // se le descuenta la renta de su dinero
-                                                System.out.println(n.dinero);
                                                 // estamos sumando la renta al dueño de la propiedad 
                                                 if (P.Dueño.equals(x.nombre)) {
-                                                    x.dinero = x.dinero + P.renta;
+                                                    x.dinero = x.dinero + resultado;
                                                 }
                                                 if (P.Dueño.equals(y.nombre)) {
-                                                    y.dinero = y.dinero + P.renta;
+                                                    y.dinero = y.dinero + resultado;
                                                 }
                                                 if (P.Dueño.equals(z.nombre)) {
-                                                    z.dinero = z.dinero + P.renta;
+                                                    z.dinero = z.dinero + resultado;
                                                 }
                                             }
                                         } else {
@@ -272,7 +271,18 @@ public class ListaCampo {
                     if (P.numCasilla == 2 || P.numCasilla == 17 || P.numCasilla == 33) {// arca comunal 
                         Cofre C = new Cofre();
                         int escogido = C.cartaRandom();
-                        escogido = 2;
+                        if(n.CArca ==1 ||x.CArca ==1||y.CArca ==1 || z.CArca ==1){ //carta de salga de la carcel, esta ocupada
+                            if(escogido ==1){
+                                do{
+                                   escogido = C.cartaRandom();
+                                }while(escogido==1);
+                            }
+                        }
+                        if(n.Csuerte ==1 && escogido ==1){
+                            do{
+                                   escogido = C.cartaRandom();
+                                }while(escogido==1);
+                        }
                         String cartica = "/ImgArcaComunal/" + escogido + ".png";
                         Icon carta = new ImageIcon(getClass().getResource(cartica));
                         JOptionPane.showMessageDialog(null, "", "CARTA", JOptionPane.PLAIN_MESSAGE, carta);
@@ -280,6 +290,7 @@ public class ListaCampo {
                         switch (escogido) {
                             case 1:
                                 //Salga de la carcel
+                                n.CArca = 1;
                                 break;
                             case 2:
                                 //Vaya para la carcel
@@ -406,17 +417,29 @@ public class ListaCampo {
                     } else if (P.numCasilla == 7 || P.numCasilla == 22 || P.numCasilla == 36) {// fortuna
                         Suerte S = new Suerte();
                         int escogido = S.cartaRandom();
+                        if(n.Csuerte ==11 ||x.Csuerte ==11||y.Csuerte ==11 || z.Csuerte ==11){ //carta de salga de la carcel, esta ocupada
+                            if(escogido ==11){
+                                do{
+                                   escogido = S.cartaRandom();
+                                }while(escogido==11);
+                            }
+                        }
+                        if(n.CArca ==11 && escogido ==11){
+                            do{
+                                   escogido = S.cartaRandom();
+                                }while(escogido==11);
+                        } 
                         String cartica = "/ImgSuerte/" + escogido + ".png";
                         Icon carta = new ImageIcon(getClass().getResource(cartica));
                         JOptionPane.showMessageDialog(null, "", "CARTA", JOptionPane.PLAIN_MESSAGE, carta);
                         int dado = 0;
                         switch (escogido) {
                             case 1:
-                                System.out.println("hola");
                                 while (n.posicion + dado != 39) {
                                     dado++;
                                 }
                                 mover(dado, ficha, n);
+                                
                                 break;
                             case 2:
 
@@ -524,18 +547,10 @@ public class ListaCampo {
                                 break;
                             case 11:
                                 //Salir de la carcel gratis
+                                n.Csuerte=1;
                                 break;
                             case 12:
-                                //Esto toca arreglarlo pq retroceder tres casillas no está bién implementado, por ahora da la vuelta completa
-                                /*while (n.posicion + dado != n.posicion - 3) {
-                                    dado++;
-                                    if (dado + n.posicion == 40) {
-                                        mover(dado, ficha, n);
-                                        dado = 0;
-                                    }
-                                }
-                                mover(dado, ficha, n);
-                                n.dinero = n.dinero - 200;*/
+                                n.dinero = n.dinero+1;
                                 break;
                             case 13:
                                 if (n.dinero <= 15) {
@@ -556,7 +571,7 @@ public class ListaCampo {
                                 mover(dado, ficha, n);
                                 break;
                             case 15:
-                                //Vaya pa la carcel implementar esa porqueria
+                                //Vaya pa la carcel
                                 while (n.posicion + dado != 10) {
                                     dado++;
                                     if (dado + n.posicion == 40) {

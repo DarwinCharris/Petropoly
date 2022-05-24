@@ -44,11 +44,11 @@ public class Interfaz extends javax.swing.JFrame {
                 DinV.setVisible(false);
                 ProVerde.setVisible(false);
                 ProAzul.setVisible(false);
-                
+
                 break;
             case 3:
                 azul.setVisible(false);
-                TAzul.setVisible(false);            
+                TAzul.setVisible(false);
                 DinAz.setVisible(false);
                 ProAzul.setVisible(false);
                 break;
@@ -66,10 +66,9 @@ public class Interfaz extends javax.swing.JFrame {
         transparenciaButton();
         //sonido
         sonido1 = java.applet.Applet.newAudioClip(getClass().getResource("/audios/interfaz.wav"));
-        //sonido1.play();
+        sonido1.play();
         sonido2 = java.applet.Applet.newAudioClip(getClass().getResource("/audios/interfaz2.wav"));
-        //sonido2.loop();
-        
+        sonido2.loop();
 
     }
 
@@ -83,13 +82,13 @@ public class Interfaz extends javax.swing.JFrame {
         ProRojo.setBorderPainted(false);
         ProAmarillo.setOpaque(false);
         ProAmarillo.setContentAreaFilled(false);
-        ProAmarillo.setBorderPainted(false);  
+        ProAmarillo.setBorderPainted(false);
         ProVerde.setOpaque(false);
         ProVerde.setContentAreaFilled(false);
-        ProVerde.setBorderPainted(false);  
+        ProVerde.setBorderPainted(false);
         ProAzul.setOpaque(false);
         ProAzul.setContentAreaFilled(false);
-        ProAzul.setBorderPainted(false);  
+        ProAzul.setBorderPainted(false);
 
     }
 
@@ -273,135 +272,171 @@ public class Interfaz extends javax.swing.JFrame {
         if (Variables.condition == false) { //Si nadie ha ganado que siga el juego
             switch (caso) { //Corresponde a tu turno
                 case 1:
-                    if(Variables.jugador1.estado == 2){
-                        String[] opciones  = {"PAGAR", "CANCELAR"};
-                        int ventana = JOptionPane.showOptionDialog(null, "¿Quieres pagar $200 para salir de la carcel?",
+                    if (Variables.jugador1.estado != 0) {
+                        if (Variables.jugador1.CArca == 1 || Variables.jugador1.Csuerte == 1) {
+                            Variables.jugador1.estado = 0;
+                            Variables.jugador1.contador = 0;
+                            JOptionPane.showMessageDialog(null, "La carta de salir de la carcel gratis pagó tu fianza" + "\n"
+                                    + "TE SALVASTE, por ahora....", "CONGRATULATIONS!", JOptionPane.PLAIN_MESSAGE);
+                            Variables.jugador1.CArca = 0;
+                            Variables.jugador1.Csuerte = 0;
+                        } else {
+                            String[] opciones = {"PAGAR", "CANCELAR"};
+                            int ventana = JOptionPane.showOptionDialog(null, "¿Quieres pagar $200 para salir de la carcel?",
                                     "Salir de la carcel", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
-                        switch(ventana){
-                            case 0:
-                                if(Variables.jugador1.dinero<=200){
-                                    JOptionPane.showMessageDialog(null, "Dinero insuficiente");
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
-                                    Variables.jugador1.dinero = Variables.jugador1.dinero -200;
-                                }
-                                break;
+                            switch (ventana) {
+                                case 0:
+                                    if (Variables.jugador1.dinero <= 200) {
+                                        JOptionPane.showMessageDialog(null, "Dinero insuficiente");
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
+                                        Variables.jugador1.dinero = Variables.jugador1.dinero - 200;
+                                    }
+                                    break;
+                            }
                         }
-                    }else{
-                    dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
-                    dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
-                    dado = dado1 + dado2;
-                    dados(dado1, dado2);
-                    mover(2, rojo, Variables.jugador1); //Moverse
-                    tablero.buscarn(Variables.jugador1, Variables.jugador2, Variables.jugador3, Variables.jugador4, rojo); //Buscar en el tablero/Comprar/Pagar/Cambiar tu estado
-                    if (Variables.jugador1.dinero == 0) { //Si caieste a bancarrota...
-                        rojo.setVisible(false); //Se desactiva tu fiha ... prox se desactiva tu label del dinero
-                        DinR.setVisible(false);
-                        Variables.vecTurnos[0] = 0; //Ya no estarás en los turnos pq nunca habrá un turno 0
-                    }
-                    DinR.setText("$" + Variables.jugador1.dinero);
-                    DinA.setText("$" + Variables.jugador2.dinero);
-                    DinV.setText("$" + Variables.jugador3.dinero);
-                    DinAz.setText("$" + Variables.jugador4.dinero);
+                    } else {
+                        dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
+                        dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
+                        dado = dado1 + dado2;
+                        dados(dado1, dado2);
+                        mover(dado, rojo, Variables.jugador1); //Moverse
+                        tablero.buscarn(Variables.jugador1, Variables.jugador2, Variables.jugador3, Variables.jugador4, rojo); //Buscar en el tablero/Comprar/Pagar/Cambiar tu estado
+                        if (Variables.jugador1.dinero == 0) { //Si caieste a bancarrota...
+                            rojo.setVisible(false); //Se desactiva tu fiha ... prox se desactiva tu label del dinero
+                            DinR.setVisible(false);
+                            Variables.vecTurnos[0] = 0; //Ya no estarás en los turnos pq nunca habrá un turno 0
+                        }
+                        DinR.setText("$" + Variables.jugador1.dinero);
+                        DinA.setText("$" + Variables.jugador2.dinero);
+                        DinV.setText("$" + Variables.jugador3.dinero);
+                        DinAz.setText("$" + Variables.jugador4.dinero);
                     }
                     break;
                 case 2:
-                    if(Variables.jugador2.estado == 2){
-                        String[] opciones  = {"PAGAR", "CANCELAR"};
-                        int ventana = JOptionPane.showOptionDialog(null, "¿Quieres pagar $200 para salir de la carcel?",
+                    if (Variables.jugador2.estado != 0) {
+                        if (Variables.jugador2.CArca == 1 || Variables.jugador2.Csuerte == 1) {
+                            Variables.jugador2.estado = 0;
+                            Variables.jugador2.contador = 0;
+                            JOptionPane.showMessageDialog(null, "La carta de salir de la carcel gratis pagó tu fianza" + "\n"
+                                    + "TE SALVASTE, por ahora....", "CONGRATULATIONS!", JOptionPane.PLAIN_MESSAGE);
+                            Variables.jugador2.CArca = 0;
+                            Variables.jugador2.Csuerte = 0;
+                        } else {
+                            String[] opciones = {"PAGAR", "CANCELAR"};
+                            int ventana = JOptionPane.showOptionDialog(null, "¿Quieres pagar $200 para salir de la carcel?",
                                     "Salir de la carcel", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
-                        switch(ventana){
-                            case 0:
-                                if(Variables.jugador2.dinero<=200){
-                                    JOptionPane.showMessageDialog(null, "Dinero insuficiente");
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
-                                    Variables.jugador2.dinero = Variables.jugador2.dinero -200;
-                                }
-                                break;
+                            switch (ventana) {
+                                case 0:
+                                    if (Variables.jugador2.dinero <= 200) {
+                                        JOptionPane.showMessageDialog(null, "Dinero insuficiente");
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
+                                        Variables.jugador2.dinero = Variables.jugador2.dinero - 200;
+                                    }
+                                    break;
+                            }
                         }
-                    }else{
-                    dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
-                    dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
-                    dado = dado1 + dado2;
-                    dados(dado1, dado2);
-                    mover(2, amarilla, Variables.jugador2);
-                    tablero.buscarn(Variables.jugador2, Variables.jugador1, Variables.jugador3, Variables.jugador4, amarilla);
-                    if (Variables.jugador2.dinero == 0) {
-                        amarilla.setVisible(false);
-                        DinA.setVisible(false);
-                        Variables.vecTurnos[1] = 0;
+                    } else {
+                        dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
+                        dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
+                        dado = dado1 + dado2;
+                        dados(dado1, dado2);
+                        mover(dado, amarilla, Variables.jugador2);
+                        tablero.buscarn(Variables.jugador2, Variables.jugador1, Variables.jugador3, Variables.jugador4, amarilla);
+                        if (Variables.jugador2.dinero == 0) {
+                            amarilla.setVisible(false);
+                            DinA.setVisible(false);
+                            Variables.vecTurnos[1] = 0;
+                        }
+                        DinR.setText("$" + Variables.jugador1.dinero);
+                        DinA.setText("$" + Variables.jugador2.dinero);
+                        DinV.setText("$" + Variables.jugador3.dinero);
+                        DinAz.setText("$" + Variables.jugador4.dinero);
                     }
-                    DinR.setText("$" + Variables.jugador1.dinero);
-                    DinA.setText("$" + Variables.jugador2.dinero);
-                    DinV.setText("$" + Variables.jugador3.dinero);
-                    DinAz.setText("$" + Variables.jugador4.dinero);
-            }
                     break;
                 case 3:
-                    if(Variables.jugador3.estado == 2){
-                        String[] opciones  = {"PAGAR", "CANCELAR"};
-                        int ventana = JOptionPane.showOptionDialog(null, "¿Quieres pagar $200 para salir de la carcel?",
+                    if (Variables.jugador3.estado != 0) {
+                        if (Variables.jugador3.CArca == 1 || Variables.jugador3.Csuerte == 1) {
+                            Variables.jugador3.estado = 0;
+                            Variables.jugador3.contador = 0;
+                            JOptionPane.showMessageDialog(null, "La carta de salir de la carcel gratis pagó tu fianza" + "\n"
+                                    + "TE SALVASTE, por ahora....", "CONGRATULATIONS!", JOptionPane.PLAIN_MESSAGE);
+                            Variables.jugador3.CArca = 0;
+                            Variables.jugador3.Csuerte = 0;
+                        } else {
+                            String[] opciones = {"PAGAR", "CANCELAR"};
+                            int ventana = JOptionPane.showOptionDialog(null, "¿Quieres pagar $200 para salir de la carcel?",
                                     "Salir de la carcel", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
-                        switch(ventana){
-                            case 0:
-                                if(Variables.jugador3.dinero<=200){
-                                    JOptionPane.showMessageDialog(null, "Dinero insuficiente");
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
-                                    Variables.jugador3.dinero = Variables.jugador3.dinero -200;
-                                }
-                                break;
+                            switch (ventana) {
+                                case 0:
+                                    if (Variables.jugador3.dinero <= 200) {
+                                        JOptionPane.showMessageDialog(null, "Dinero insuficiente");
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
+                                        Variables.jugador3.dinero = Variables.jugador3.dinero - 200;
+                                    }
+                                    break;
+                            }
                         }
-                    }else{
-                    dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
-                    dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
-                    dado = dado1 + dado2;
-                    dados(dado1, dado2);
-                    mover(dado, verde, Variables.jugador3);
-                    tablero.buscarn(Variables.jugador3, Variables.jugador1, Variables.jugador2, Variables.jugador4, verde);
-                    if (Variables.jugador3.dinero == 0) {
-                        verde.setVisible(false);
-                        DinV.setVisible(false);
-                        Variables.vecTurnos[2] = 0;
-                    }
-                    DinR.setText("$" + Variables.jugador1.dinero);
-                    DinA.setText("$" + Variables.jugador2.dinero);
-                    DinV.setText("$" + Variables.jugador3.dinero);
-                    DinAz.setText("$" + Variables.jugador4.dinero);
+                    } else {
+                        dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
+                        dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
+                        dado = dado1 + dado2;
+                        dados(dado1, dado2);
+                        mover(dado, verde, Variables.jugador3);
+                        tablero.buscarn(Variables.jugador3, Variables.jugador1, Variables.jugador2, Variables.jugador4, verde);
+                        if (Variables.jugador3.dinero == 0) {
+                            verde.setVisible(false);
+                            DinV.setVisible(false);
+                            Variables.vecTurnos[2] = 0;
+                        }
+                        DinR.setText("$" + Variables.jugador1.dinero);
+                        DinA.setText("$" + Variables.jugador2.dinero);
+                        DinV.setText("$" + Variables.jugador3.dinero);
+                        DinAz.setText("$" + Variables.jugador4.dinero);
                     }
                     break;
                 case 4:
-                    if(Variables.jugador4.estado == 2){
-                        String[] opciones  = {"PAGAR", "CANCELAR"};
-                        int ventana = JOptionPane.showOptionDialog(null, "¿Quieres pagar $200 para salir de la carcel?",
+                    if (Variables.jugador4.estado != 0) {
+                        if (Variables.jugador4.CArca == 1 || Variables.jugador4.Csuerte == 1) {
+                            Variables.jugador4.estado = 0;
+                            Variables.jugador4.contador = 0;
+                            JOptionPane.showMessageDialog(null, "La carta de salir de la carcel gratis pagó tu fianza" + "\n"
+                                    + "TE SALVASTE, por ahora....", "CONGRATULATIONS!", JOptionPane.PLAIN_MESSAGE);
+                            Variables.jugador4.CArca = 0;
+                            Variables.jugador4.Csuerte = 0;
+                        } else {
+                            String[] opciones = {"PAGAR", "CANCELAR"};
+                            int ventana = JOptionPane.showOptionDialog(null, "¿Quieres pagar $200 para salir de la carcel?",
                                     "Salir de la carcel", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
-                        switch(ventana){
-                            case 0:
-                                if(Variables.jugador4.dinero<=200){
-                                    JOptionPane.showMessageDialog(null, "Dinero insuficiente");
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
-                                    Variables.jugador4.dinero = Variables.jugador4.dinero -200;
-                                }
-                                break;
+                            switch (ventana) {
+                                case 0:
+                                    if (Variables.jugador4.dinero <= 200) {
+                                        JOptionPane.showMessageDialog(null, "Dinero insuficiente");
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
+                                        Variables.jugador4.dinero = Variables.jugador4.dinero - 200;
+                                    }
+                                    break;
+                            }
                         }
-                    }else{
-                    dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
-                    dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
-                    dado = dado1 + dado2;
-                    dados(dado1, dado2);
-                    mover(dado, azul, Variables.jugador4);
-                    tablero.buscarn(Variables.jugador4, Variables.jugador1, Variables.jugador2, Variables.jugador3, azul);
-                    if (Variables.jugador4.dinero == 0) {
-                        azul.setVisible(false);
-                        DinAz.setVisible(false);
-                        Variables.vecTurnos[3] = 0;
-                    }
-                    DinR.setText("$" + Variables.jugador1.dinero);
-                    DinA.setText("$" + Variables.jugador2.dinero);
-                    DinV.setText("$" + Variables.jugador3.dinero);
-                    DinAz.setText("$" + Variables.jugador4.dinero);
+                    } else {
+                        dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
+                        dado2 = (int) ((Math.random()) * 60 / 10) + 1;//dado2
+                        dado = dado1 + dado2;
+                        dados(dado1, dado2);
+                        mover(dado, azul, Variables.jugador4);
+                        tablero.buscarn(Variables.jugador4, Variables.jugador1, Variables.jugador2, Variables.jugador3, azul);
+                        if (Variables.jugador4.dinero == 0) {
+                            azul.setVisible(false);
+                            DinAz.setVisible(false);
+                            Variables.vecTurnos[3] = 0;
+                        }
+                        DinR.setText("$" + Variables.jugador1.dinero);
+                        DinA.setText("$" + Variables.jugador2.dinero);
+                        DinV.setText("$" + Variables.jugador3.dinero);
+                        DinAz.setText("$" + Variables.jugador4.dinero);
                     }
                     break;
             }
@@ -411,34 +446,34 @@ public class Interfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguien ganó", "CONGRATULATIONS!", JOptionPane.PLAIN_MESSAGE);        // TODO add your handling code here:        
         }
         turno++;
-        
+
         if (turno == Variables.njugadores + 1) {
             turno = 1;
         }
-        if(Variables.jugador1.estado == 2){
+        if (Variables.jugador1.estado == 2 && caso == 1) {
             Variables.jugador1.contador++;
-            if(Variables.jugador1.contador ==4){
+            if (Variables.jugador1.contador == 4) {
                 Variables.jugador1.contador = 0;
                 Variables.jugador1.estado = 0;
             }
         }
-        if(Variables.jugador2.estado == 2){
+        if (Variables.jugador2.estado == 2 && caso == 2) {
             Variables.jugador2.contador++;
-            if(Variables.jugador2.contador ==4){
+            if (Variables.jugador2.contador == 4) {
                 Variables.jugador2.contador = 0;
                 Variables.jugador2.estado = 0;
             }
         }
-        if(Variables.jugador3.estado == 2){
+        if (Variables.jugador3.estado == 2 && caso == 3) {
             Variables.jugador3.contador++;
-            if(Variables.jugador3.contador ==4){
+            if (Variables.jugador3.contador == 4) {
                 Variables.jugador3.contador = 0;
                 Variables.jugador3.estado = 0;
             }
         }
-        if(Variables.jugador4.estado == 2){
+        if (Variables.jugador4.estado == 2 && caso == 4) {
             Variables.jugador4.contador++;
-            if(Variables.jugador4.contador ==4){
+            if (Variables.jugador4.contador == 4) {
                 Variables.jugador4.contador = 0;
                 Variables.jugador4.estado = 0;
             }
@@ -448,9 +483,50 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_dadoBtnActionPerformed
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
-        Njugadores c = new Njugadores();
-        c.setVisible(true);
-        this.setVisible(false);
+        String[] opciones = {"SALIR", "NO SALIR"};
+        int op = JOptionPane.showOptionDialog(null, "¿Está seguro que quiere sali?, "+"\n"+" se perderá la partida",
+                "!!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CLOSED_OPTION, null, opciones, opciones[0]);
+        if(op == 0){
+            Variables.jugador1.posicion = 0;
+            Variables.jugador1.estado=0;
+            Variables.jugador1.dinero = 1500;
+            Variables.jugador1.x= 585;
+            Variables.jugador1.y= 603;
+            Variables.jugador1.nombre = "jugador1";
+            Variables.jugador1.contador = 0;
+            Variables.jugador1.Csuerte=0;
+            Variables.jugador1.CArca = 0;
+            Variables.jugador2.posicion = 0;
+            Variables.jugador2.estado=0;
+            Variables.jugador2.dinero = 1500;
+            Variables.jugador2.x= 585;
+            Variables.jugador2.y= 603;
+            Variables.jugador2.nombre = "jugador3";
+            Variables.jugador2.contador = 0;
+            Variables.jugador2.Csuerte=0;
+            Variables.jugador2.CArca = 0;
+            Variables.jugador3.posicion = 0;
+            Variables.jugador3.estado=0;
+            Variables.jugador3.dinero = 1500;
+            Variables.jugador3.x= 585;
+            Variables.jugador3.y= 603;
+            Variables.jugador3.nombre = "jugador3";
+            Variables.jugador3.contador = 0;
+            Variables.jugador3.Csuerte=0;
+            Variables.jugador3.CArca = 0;
+            Variables.jugador4.posicion = 0;
+            Variables.jugador4.estado=0;
+            Variables.jugador4.dinero = 1500;
+            Variables.jugador4.x= 585;
+            Variables.jugador4.y= 603;
+            Variables.jugador4.nombre = "jugador4";
+            Variables.jugador4.contador = 0;
+            Variables.jugador4.Csuerte=0;
+            Variables.jugador4.CArca = 0;
+            Njugadores c = new Njugadores();
+            c.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_homeMouseClicked
 
     private void ProRojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProRojoActionPerformed
