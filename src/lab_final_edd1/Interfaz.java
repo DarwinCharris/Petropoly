@@ -285,6 +285,7 @@ public class Interfaz extends javax.swing.JFrame {
                                     JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
                                     Variables.jugador1.dinero = Variables.jugador1.dinero -200;
                                 }
+                                break;
                         }
                     }else{
                     dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
@@ -317,6 +318,7 @@ public class Interfaz extends javax.swing.JFrame {
                                     JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
                                     Variables.jugador2.dinero = Variables.jugador2.dinero -200;
                                 }
+                                break;
                         }
                     }else{
                     dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
@@ -349,6 +351,7 @@ public class Interfaz extends javax.swing.JFrame {
                                     JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
                                     Variables.jugador3.dinero = Variables.jugador3.dinero -200;
                                 }
+                                break;
                         }
                     }else{
                     dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
@@ -381,6 +384,7 @@ public class Interfaz extends javax.swing.JFrame {
                                     JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
                                     Variables.jugador4.dinero = Variables.jugador4.dinero -200;
                                 }
+                                break;
                         }
                     }else{
                     dado1 = (int) ((Math.random()) * 60 / 10) + 1;//dado 1
