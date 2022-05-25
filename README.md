@@ -1,6 +1,7 @@
 # Petropoly 
-Laboratorio final - Estructura de datos I
-Realizado por: 
+- Laboratorio final - Estructura de datos I
+
+- Realizado por: 
   Ana Ardila Pacheco
   Darwin Charris
   Emily Roldán Ripoll
