@@ -70,7 +70,7 @@ public class Lab_Final_EDD1 {
             }
 
             br.close();
-
+            ca.display();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

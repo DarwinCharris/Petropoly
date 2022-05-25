@@ -291,6 +291,7 @@ public class Interfaz extends javax.swing.JFrame {
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
                                         Variables.jugador1.dinero = Variables.jugador1.dinero - 200;
+                                        Variables.jugador1.estado = 0;
                                     }
                                     break;
                             }
@@ -307,11 +308,12 @@ public class Interfaz extends javax.swing.JFrame {
                             DinR.setVisible(false);
                             Variables.vecTurnos[0] = 0; //Ya no estarás en los turnos pq nunca habrá un turno 0
                         }
-                        DinR.setText("$" + Variables.jugador1.dinero);
-                        DinA.setText("$" + Variables.jugador2.dinero);
-                        DinV.setText("$" + Variables.jugador3.dinero);
-                        DinAz.setText("$" + Variables.jugador4.dinero);
+
                     }
+                    DinR.setText("$" + Variables.jugador1.dinero);
+                    DinA.setText("$" + Variables.jugador2.dinero);
+                    DinV.setText("$" + Variables.jugador3.dinero);
+                    DinAz.setText("$" + Variables.jugador4.dinero);
                     break;
                 case 2:
                     if (Variables.jugador2.estado != 0) {
@@ -333,6 +335,7 @@ public class Interfaz extends javax.swing.JFrame {
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
                                         Variables.jugador2.dinero = Variables.jugador2.dinero - 200;
+                                        Variables.jugador2.estado = 0;
                                     }
                                     break;
                             }
@@ -349,11 +352,12 @@ public class Interfaz extends javax.swing.JFrame {
                             DinA.setVisible(false);
                             Variables.vecTurnos[1] = 0;
                         }
-                        DinR.setText("$" + Variables.jugador1.dinero);
-                        DinA.setText("$" + Variables.jugador2.dinero);
-                        DinV.setText("$" + Variables.jugador3.dinero);
-                        DinAz.setText("$" + Variables.jugador4.dinero);
+
                     }
+                    DinR.setText("$" + Variables.jugador1.dinero);
+                    DinA.setText("$" + Variables.jugador2.dinero);
+                    DinV.setText("$" + Variables.jugador3.dinero);
+                    DinAz.setText("$" + Variables.jugador4.dinero);
                     break;
                 case 3:
                     if (Variables.jugador3.estado != 0) {
@@ -375,6 +379,7 @@ public class Interfaz extends javax.swing.JFrame {
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
                                         Variables.jugador3.dinero = Variables.jugador3.dinero - 200;
+                                        Variables.jugador3.estado = 0;
                                     }
                                     break;
                             }
@@ -391,11 +396,12 @@ public class Interfaz extends javax.swing.JFrame {
                             DinV.setVisible(false);
                             Variables.vecTurnos[2] = 0;
                         }
-                        DinR.setText("$" + Variables.jugador1.dinero);
-                        DinA.setText("$" + Variables.jugador2.dinero);
-                        DinV.setText("$" + Variables.jugador3.dinero);
-                        DinAz.setText("$" + Variables.jugador4.dinero);
+
                     }
+                    DinR.setText("$" + Variables.jugador1.dinero);
+                    DinA.setText("$" + Variables.jugador2.dinero);
+                    DinV.setText("$" + Variables.jugador3.dinero);
+                    DinAz.setText("$" + Variables.jugador4.dinero);
                     break;
                 case 4:
                     if (Variables.jugador4.estado != 0) {
@@ -417,6 +423,7 @@ public class Interfaz extends javax.swing.JFrame {
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Evadiste a la fiscalía con exito");
                                         Variables.jugador4.dinero = Variables.jugador4.dinero - 200;
+                                        Variables.jugador4.estado = 0;
                                     }
                                     break;
                             }
@@ -433,11 +440,12 @@ public class Interfaz extends javax.swing.JFrame {
                             DinAz.setVisible(false);
                             Variables.vecTurnos[3] = 0;
                         }
-                        DinR.setText("$" + Variables.jugador1.dinero);
-                        DinA.setText("$" + Variables.jugador2.dinero);
-                        DinV.setText("$" + Variables.jugador3.dinero);
-                        DinAz.setText("$" + Variables.jugador4.dinero);
+
                     }
+                    DinR.setText("$" + Variables.jugador1.dinero);
+                    DinA.setText("$" + Variables.jugador2.dinero);
+                    DinV.setText("$" + Variables.jugador3.dinero);
+                    DinAz.setText("$" + Variables.jugador4.dinero);
                     break;
             }
         } else {
@@ -484,44 +492,44 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
         String[] opciones = {"SALIR", "NO SALIR"};
-        int op = JOptionPane.showOptionDialog(null, "¿Está seguro que quiere sali?, "+"\n"+" se perderá la partida",
+        int op = JOptionPane.showOptionDialog(null, "¿Está seguro que quiere sali?, " + "\n" + " se perderá la partida",
                 "!!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CLOSED_OPTION, null, opciones, opciones[0]);
-        if(op == 0){
+        if (op == 0) {
             Variables.jugador1.posicion = 0;
-            Variables.jugador1.estado=0;
+            Variables.jugador1.estado = 0;
             Variables.jugador1.dinero = 1500;
-            Variables.jugador1.x= 585;
-            Variables.jugador1.y= 603;
+            Variables.jugador1.x = 585;
+            Variables.jugador1.y = 603;
             Variables.jugador1.nombre = "jugador1";
             Variables.jugador1.contador = 0;
-            Variables.jugador1.Csuerte=0;
+            Variables.jugador1.Csuerte = 0;
             Variables.jugador1.CArca = 0;
             Variables.jugador2.posicion = 0;
-            Variables.jugador2.estado=0;
+            Variables.jugador2.estado = 0;
             Variables.jugador2.dinero = 1500;
-            Variables.jugador2.x= 585;
-            Variables.jugador2.y= 603;
+            Variables.jugador2.x = 585;
+            Variables.jugador2.y = 603;
             Variables.jugador2.nombre = "jugador3";
             Variables.jugador2.contador = 0;
-            Variables.jugador2.Csuerte=0;
+            Variables.jugador2.Csuerte = 0;
             Variables.jugador2.CArca = 0;
             Variables.jugador3.posicion = 0;
-            Variables.jugador3.estado=0;
+            Variables.jugador3.estado = 0;
             Variables.jugador3.dinero = 1500;
-            Variables.jugador3.x= 585;
-            Variables.jugador3.y= 603;
+            Variables.jugador3.x = 585;
+            Variables.jugador3.y = 603;
             Variables.jugador3.nombre = "jugador3";
             Variables.jugador3.contador = 0;
-            Variables.jugador3.Csuerte=0;
+            Variables.jugador3.Csuerte = 0;
             Variables.jugador3.CArca = 0;
             Variables.jugador4.posicion = 0;
-            Variables.jugador4.estado=0;
+            Variables.jugador4.estado = 0;
             Variables.jugador4.dinero = 1500;
-            Variables.jugador4.x= 585;
-            Variables.jugador4.y= 603;
+            Variables.jugador4.x = 585;
+            Variables.jugador4.y = 603;
             Variables.jugador4.nombre = "jugador4";
             Variables.jugador4.contador = 0;
-            Variables.jugador4.Csuerte=0;
+            Variables.jugador4.Csuerte = 0;
             Variables.jugador4.CArca = 0;
             Njugadores c = new Njugadores();
             c.setVisible(true);
