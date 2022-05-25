@@ -16,8 +16,6 @@ public class Jugadores {
     int y;
     int posicion;
     int estado; // 0 jugando, 1 bancarrota, 2 encarcelado
-    String propiedades; // esto es una lista de propiedades 
-    String monopolios; // esto es una lista dependiendo de propiedades BONOOOOO
     int dinero;//empieza en 1500
     int contador;
     int Csuerte;
