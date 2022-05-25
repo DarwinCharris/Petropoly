@@ -57,17 +57,6 @@ public class Tablero {
             current = current.next;
         } while (current != head);
 
-        /*while (current != null) {
-            if (current.next != null) {
-                System.out.print(current.numCasilla + "." + current.nombre + " <-> ");
-            } else {
-                System.out.print(current.numCasilla + "." + current.nombre + " -> ");
-            }
-            current = current.next;
-        }
-        if (current == null) {
-            System.out.print("null\n");
-        }*/
     }
 
     public void buscarn(Jugadores n, Jugadores x, Jugadores y, Jugadores z, JLabel ficha) {
@@ -271,17 +260,17 @@ public class Tablero {
                     if (P.numCasilla == 2 || P.numCasilla == 17 || P.numCasilla == 33) {// arca comunal 
                         Cofre C = new Cofre();
                         int escogido = C.cartaRandom();
-                        if(n.CArca ==1 ||x.CArca ==1||y.CArca ==1 || z.CArca ==1){ //carta de salga de la carcel, esta ocupada
-                            if(escogido ==1){
-                                do{
-                                   escogido = C.cartaRandom();
-                                }while(escogido==1);
+                        if (n.CArca == 1 || x.CArca == 1 || y.CArca == 1 || z.CArca == 1) { //carta de salga de la carcel, esta ocupada
+                            if (escogido == 1) {
+                                do {
+                                    escogido = C.cartaRandom();
+                                } while (escogido == 1);
                             }
                         }
-                        if(n.Csuerte ==1 && escogido ==1){
-                            do{
-                                   escogido = C.cartaRandom();
-                                }while(escogido==1);
+                        if (n.Csuerte == 1 && escogido == 1) {
+                            do {
+                                escogido = C.cartaRandom();
+                            } while (escogido == 1);
                         }
                         String cartica = "/ImgArcaComunal/" + escogido + ".png";
                         Icon carta = new ImageIcon(getClass().getResource(cartica));
@@ -304,11 +293,14 @@ public class Tablero {
                                 moversin(dado, ficha, n);
                                 n.estado = 2;
                                 break;
-                            case 3:
+                            case 3:// epacolombia
                                 while (n.posicion + dado != 40) {
                                     dado++;
                                 }
+                                sonido = java.applet.Applet.newAudioClip(getClass().getResource("/audios/epacolombia.wav"));
+                                sonido.play();
                                 mover(dado, ficha, n);
+
                                 break;
                             case 4:
                                 n.dinero = n.dinero + 200;
@@ -346,7 +338,8 @@ public class Tablero {
                             case 10:
                                 n.dinero = n.dinero + 25;
                                 break;
-                            case 11:
+                            case 11:// ana del castillo 
+                                
                                 if (n.dinero <= 100) {
                                     n.dinero = 0;
                                     n.estado = 1;
@@ -354,7 +347,9 @@ public class Tablero {
                                     n.dinero = n.dinero - 100;
                                 }
                                 break;
-                            case 12:
+                            case 12:// diomedes
+                                sonido = java.applet.Applet.newAudioClip(getClass().getResource("/audios/diomedes.wav"));
+                                sonido.play();
                                 switch (Variables.njugadores) {
                                     case 2:
                                         if (x.dinero <= 10) {
@@ -417,18 +412,18 @@ public class Tablero {
                     } else if (P.numCasilla == 7 || P.numCasilla == 22 || P.numCasilla == 36) {// fortuna
                         Suerte S = new Suerte();
                         int escogido = S.cartaRandom();
-                        if(n.Csuerte ==11 ||x.Csuerte ==11||y.Csuerte ==11 || z.Csuerte ==11){ //carta de salga de la carcel, esta ocupada
-                            if(escogido ==11){
-                                do{
-                                   escogido = S.cartaRandom();
-                                }while(escogido==11);
+                        if (n.Csuerte == 11 || x.Csuerte == 11 || y.Csuerte == 11 || z.Csuerte == 11) { //carta de salga de la carcel, esta ocupada
+                            if (escogido == 11) {
+                                do {
+                                    escogido = S.cartaRandom();
+                                } while (escogido == 11);
                             }
                         }
-                        if(n.CArca ==11 && escogido ==11){
-                            do{
-                                   escogido = S.cartaRandom();
-                                }while(escogido==11);
-                        } 
+                        if (n.CArca == 11 && escogido == 11) {
+                            do {
+                                escogido = S.cartaRandom();
+                            } while (escogido == 11);
+                        }
                         String cartica = "/ImgSuerte/" + escogido + ".png";
                         Icon carta = new ImageIcon(getClass().getResource(cartica));
                         JOptionPane.showMessageDialog(null, "", "CARTA", JOptionPane.PLAIN_MESSAGE, carta);
@@ -439,7 +434,7 @@ public class Tablero {
                                     dado++;
                                 }
                                 mover(dado, ficha, n);
-                                
+
                                 break;
                             case 2:
 
@@ -547,10 +542,10 @@ public class Tablero {
                                 break;
                             case 11:
                                 //Salir de la carcel gratis
-                                n.Csuerte=1;
+                                n.Csuerte = 1;
                                 break;
                             case 12:
-                                n.dinero = n.dinero+1;
+                                n.dinero = n.dinero + 1;
                                 break;
                             case 13:
                                 if (n.dinero <= 15) {
@@ -572,6 +567,8 @@ public class Tablero {
                                 break;
                             case 15:
                                 //Vaya pa la carcel
+                                sonido = java.applet.Applet.newAudioClip(getClass().getResource("/audios/diosmioseñorsalvame.wav"));
+                                sonido.play();
                                 while (n.posicion + dado != 10) {
                                     dado++;
                                     if (dado + n.posicion == 40) {
@@ -934,30 +931,30 @@ public class Tablero {
     public void mostrarP(Jugadores ficha) {
         Nodo P = head;
         String res = "";
-        do{
-            if(P.Dueño.equals(ficha.nombre)){
-                if(P.renta == 9999){
-                    res = res+"Propiedad: "+P.nombre+"/ "
-                        + "Renta: "+"Cuatro veces los dados"+"\n"
-                        + "\n"
-                        + "";
-                }else{
-                  res = res+"Propiedad: "+P.nombre+"/ "
-                        + "Color: "+P.color+"/ "
-                        + "Renta Común: "+P.renta+"/ "
-                        + "Renta Monopol: "+P.rentaMonopoly+"\n"
-                        + "\n"
-                        + "";  
+        do {
+            if (P.Dueño.equals(ficha.nombre)) {
+                if (P.renta == 9999) {
+                    res = res + "Propiedad: " + P.nombre + "/ "
+                            + "Renta: " + "Cuatro veces los dados" + "\n"
+                            + "\n"
+                            + "";
+                } else {
+                    res = res + "Propiedad: " + P.nombre + "/ "
+                            + "Color: " + P.color + "/ "
+                            + "Renta Común: " + P.renta + "/ "
+                            + "Renta Monopol: " + P.rentaMonopoly + "\n"
+                            + "\n"
+                            + "";
                 }
-                
+
             }
-            P =P.next;
-        }while (P != head);
-        if(res ==""){
+            P = P.next;
+        } while (P != head);
+        if (res == "") {
             JOptionPane.showMessageDialog(null, "No tienes ninguna propiedad");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, res);
         }
-        
+
     }
 }
